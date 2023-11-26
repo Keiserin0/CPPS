@@ -1,0 +1,43 @@
+op2=>operation: '\nCreated on Wed Jan 11 22:41:52 2023\n\n@author: tanka\n'
+op4=>operation: '\nCreated on Tue Jan 10 16:15:58 2023\n\n@author: tanka\n'
+op6=>operation: import bol as mod
+op8=>operation: loop_status = True
+cond11=>condition: while loop_status
+sub74=>subroutine: mod.dispMenu()
+op76=>operation: sel = input('Please choose A,B,C or Q: ').upper()
+cond79=>condition: if (sel == 'A')
+sub83=>subroutine: mod.completeYear()
+sub85=>subroutine: print('\n')
+cond90=>condition: if (sel == 'B')
+sub94=>subroutine: mod.between()
+cond99=>condition: if (sel == 'C')
+sub103=>subroutine: mod.mostVistors()
+cond108=>condition: if (sel == 'D')
+op112=>operation: loop_status = False
+cond117=>condition: if (sel == 'Q')
+sub121=>subroutine: break
+sub125=>subroutine: print('Sorry, Invalid selection. Please try again!')
+
+op2->op4
+op4->op6
+op6->op8
+op8->cond11
+cond11(yes)->sub74
+sub74->op76
+op76->cond79
+cond79(yes)->sub83
+sub83->sub85
+sub85->cond11
+cond79(no)->cond90
+cond90(yes)->sub94
+sub94->cond11
+cond90(no)->cond99
+cond99(yes)->sub103
+sub103->cond11
+cond99(no)->cond108
+cond108(yes)->op112
+op112->cond11
+cond108(no)->cond117
+cond117(yes)->sub121
+cond117(no)->sub125
+sub125->cond11

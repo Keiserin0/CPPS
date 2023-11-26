@@ -1,0 +1,96 @@
+op2=>operation: '\nCreated on Wed Jan 11 20:57:50 2023\n\n@author: tanka\n'
+st5=>start: start dispMenu
+io7=>inputoutput: input:
+sub10=>subroutine: print('\n================================================================================\n                        \n                        * Please Select A, B, C or Q *\n        A. Display the visitor numbers of all museums in the year 2014.\n\n        B. Display the museums, the years and the visitor numbers where the \n        visitor numbers are between 400,000 and 800,000 over the \n        7-year span.\n\n        C. Display the three highest visitor attendances and their \n        corresponding years over the 7-year span.\n\n        D. Plots for visitor number of NMS and SAM vs Year and Total number of \n        visitors to all museums excluding NMS and NMS vs Year as a bar graph\n\n        Q. Terminate the program\n            \n            \n================================================================================\n    ')
+e12=>end: end dispMenu
+op15=>operation: datalist = []
+op17=>operation: with open('museumvisitors_dataset.csv') as mv:
+    for row in mv:
+        result = row.strip('\n')
+        x = result.split(',')
+        datalist.append(x)
+op19=>operation: totalrows = len(datalist)
+op21=>operation: totalcols = len(datalist[0])
+st24=>start: start completeYear
+io26=>inputoutput: input:
+sub29=>subroutine: print('Museum Visitors in 2014\n')
+cond32=>condition: for count in datalist
+op47=>operation: idx = datalist[0].index('2014')
+op49=>operation: idx2 = datalist[0].index('Museum')
+op51=>operation: name = count[idx2]
+op53=>operation: amount = count[idx]
+sub55=>subroutine: print(f'{name}, {amount}')
+e59=>end: end completeYear
+st63=>start: start between
+io65=>inputoutput: input:
+cond69=>condition: for row in range(1, totalrows)
+op112=>operation: museumName = datalist[row][0]
+cond115=>condition: for col in range(1, totalcols)
+op134=>operation: x = datalist[row][col]
+cond137=>condition: if (400000 < int(x) < 800000)
+sub141=>subroutine: print(f'Museum: {museumName}, Year: {datalist[0][col]}, Visitor Count: {x} ')
+sub145=>subroutine: continue
+e152=>end: end between
+st156=>start: start mostVistors
+io158=>inputoutput: input:
+sub161=>subroutine: print('\nMuseums:\n    \nA: Asian Civilisations Museum\nB: National Museum of Singapore\nC: Singapore Art Museum\nD: Singapore Philatetic Museum\nE: Sun Yat Sen Nanyang Memorial Hall\nF: The Peranakan Museum\n          ')
+op163=>operation: user_input = input('Please choose a museum (A, B, C, D, E or F): ').upper()
+op165=>operation: max = list[0]
+cond168=>condition: for row in range(1, totalrows)
+op225=>operation: museumName = datalist[row][0]
+cond228=>condition: for col in range(1, totalcols)
+op254=>operation: x = datalist[row][col]
+cond257=>condition: if (user_input == 'A')
+cond262=>operation: max = col if  (col > max)
+sub279=>subroutine: print(max)
+op281=>operation: museumName = datalist[row][0]
+e283=>end: end mostVistors
+
+op2->st5
+st5->io7
+io7->sub10
+sub10->e12
+e12->op15
+op15->op17
+op17->op19
+op19->op21
+op21->st24
+st24->io26
+io26->sub29
+sub29->cond32
+cond32(yes)->op47
+op47->op49
+op49->op51
+op51->op53
+op53->sub55
+sub55(left)->cond32
+cond32(no)->e59
+e59->st63
+st63->io65
+io65->cond69
+cond69(yes)->op112
+op112->cond115
+cond115(yes)->op134
+op134->cond137
+cond137(yes)->sub141
+sub141->cond115
+cond137(no)->sub145
+cond115(no)->cond69
+cond69(no)->e152
+e152->st156
+st156->io158
+io158->sub161
+sub161->op163
+op163->op165
+op165->cond168
+cond168(yes)->op225
+op225->cond228
+cond228(yes)->op254
+op254->cond257
+cond257(yes)->cond262
+cond262->cond228
+cond257(no)->cond228
+cond228(no)->cond168
+cond168(no)->sub279
+sub279->op281
+op281->e283
